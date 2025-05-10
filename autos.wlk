@@ -69,16 +69,17 @@ object intocable {
 }
 
 object batimovil {
-  var property esInvisible = true
-  method estaEnCondiciones() = self.esInvisible() and batimisiles.cantidad().size() > 0 
+  var villanosChocados = 0
+  method estaEnCondiciones() = batimisiles.cantidad().size() > 0 and villanosChocados < 7
   method hacerPrueba() {
-    esInvisible = false 
     batimisiles.dispararMisil()
+    villanosChocados = villanosChocados + 1
   }
   method reparar(){
-    esInvisible = true
     batimisiles.recargarMisiles()
+    self.limpiarAuto()
   }
+  method limpiarAuto() = villanosChocados.clear()
   method velocidadMaxima() = 70*batimisiles.cantidad().size()
 }
 
