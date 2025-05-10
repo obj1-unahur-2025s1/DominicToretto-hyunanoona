@@ -24,7 +24,7 @@ object flecha {
   }
   method velocidadMaxima() {
     return
-        nivelCombustible * 2 + combustible.calculoAdcional(nivelCombustible)
+        nivelCombustible * 2 + combustible.calculoAdicional(nivelCombustible)
   }
   method hacerPrueba() {
     nivelCombustible = (nivelCombustible - 5).max(0)
@@ -32,17 +32,17 @@ object flecha {
 }
 
     object gasolina {
-    method nivelMinimo(nivel) = 85
+    method nivelMinimo() = 85
     method calculoAdicional(unaCantidad) = 10
     }
 
     object nafta {
-    method nivelMinimo(nivel) = 50
+    method nivelMinimo() = 50
     method calculoAdicional(unaCantidad) = -1 * (unaCantidad * 2) * 0.1
     }
 
     object nitrogeno {
-    method nivelMinimo(nivel) = 0
+    method nivelMinimo() = 0
     method calculoAdicional(unaCantidad) = (unaCantidad * 2) * 10
     }
 
@@ -70,7 +70,7 @@ object intocable {
 
 object batimovil {
   var villanosChocados = 0
-  method estaEnCondiciones() = batimisiles.cantidad().size() > 0 and villanosChocados < 7
+  method estaEnCondiciones() = batimisiles.cantidad() > 0 and villanosChocados < 7
   method hacerPrueba() {
     batimisiles.dispararMisil()
     villanosChocados = villanosChocados + 1
@@ -80,7 +80,7 @@ object batimovil {
     self.limpiarAuto()
   }
   method limpiarAuto() = villanosChocados.clear()
-  method velocidadMaxima() = 70*batimisiles.cantidad().size()
+  method velocidadMaxima() = 50*batimisiles.cantidad()
 }
 
 object batimisiles {

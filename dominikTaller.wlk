@@ -1,7 +1,7 @@
 import autos.*
 
 object dominik {
-  const autos = #{} 
+  const autos = [] 
 
   method comprarAuto(unAuto) = autos.add(unAuto)
 

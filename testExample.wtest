@@ -1,0 +1,37 @@
+import autos.*
+import dominikTaller.*
+
+describe "la familia" {
+  test "dominik compra todos los autos, hace la prueba de velocidad con cada uno y envia al taller" {
+    dominik.comprarAuto(intocable)
+    dominik.comprarAuto(batimovil)
+    dominik.comprarAuto(ferrari)
+    dominik.comprarAuto(flecha)
+    dominik.hacerPruebas()
+    assert.equals([intocable, ferrari, flecha], dominik.autosNoEnCondiciones())
+  }
+
+  test "el batimovil es el auto mas veloz en condiciones" {
+    dominik.comprarAuto(intocable)
+    dominik.comprarAuto(batimovil)
+    dominik.comprarAuto(ferrari)
+    dominik.comprarAuto(flecha)
+    assert.equals(batimovil, dominik.autoMasVelozEnCondiciones())
+  }
+
+  test "la velocidad no es mas del doble" {
+    dominik.comprarAuto(intocable)
+    dominik.comprarAuto(batimovil)
+    dominik.comprarAuto(ferrari)
+    dominik.comprarAuto(flecha)
+    assert.notThat(dominik.velocidadEsMasDelDoble())
+  }
+
+  test "el promedio de las velocidades maximas de los 4 autos sones 157.5" {
+    dominik.comprarAuto(intocable)
+    dominik.comprarAuto(batimovil)
+    dominik.comprarAuto(ferrari)
+    dominik.comprarAuto(flecha)
+    assert.equals(157.5, dominik.promedioDeVelocidadesMaximas())
+  }
+}
