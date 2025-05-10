@@ -15,9 +15,9 @@ object ferrari {
 object flecha {
   var nivelCombustible = 100
   var property combustible = gasolina
-  var property color = azul 
+  var color = azul 
   method estaEnCondiciones() = nivelCombustible > combustible.nivelMinimo() 
-                               && color == rojo 
+                               && color.esAptoParaCorrer()
   method repararAuto() {
     nivelCombustible = nivelCombustible*2
     color = color.cambiarDeColor()
@@ -48,14 +48,17 @@ object flecha {
 
     object azul {
     method cambiarDeColor() = verde
+    method esAptoParaCorrer() = false
     }
 
     object rojo {
     method cambiarDeColor() = azul
+    method esAptoParaCorrer() = true
     }
 
     object verde {
     method cambiarDeColor() =rojo
+    method esAptoParaCorrer() = false
     }
 
 object intocable {
@@ -63,4 +66,24 @@ object intocable {
   method hacerPrueba() {estaEnCondiciones = false}
   method reparar() {estaEnCondiciones = true}
   method velocidadMaxima() = 45
+}
+
+object batimovil {
+  var property esInvisible = true
+  method estaEnCondiciones() = self.esInvisible() and batimisiles.cantidad().size() > 0 
+  method hacerPrueba() {
+    esInvisible = false 
+    batimisiles.dispararMisil()
+  }
+  method reparar(){
+    esInvisible = true
+    batimisiles.recargarMisiles()
+  }
+  method velocidadMaxima() = 70*batimisiles.cantidad().size()
+}
+
+object batimisiles {
+  var property cantidad = 5
+  method dispararMisil() {cantidad = (cantidad - 1).max(0)}
+  method recargarMisiles() {cantidad = 5}
 }
